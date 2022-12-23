@@ -41,3 +41,51 @@ console.log(Student.staticMethod());
 const student2 = new Student("Jeon");
 // console.log(student2.staticMethod()); // error : 정적메소드이므로 인스턴스로 호출할 수 없다.
 // console.log(Student.prototypeMethod()); // error
+
+// 인터페이스
+interface SquareFunc {
+  (num: number): number;
+}
+
+const squareFunc: SquareFunc = function (num: number) {
+  return num * num;
+};
+
+const squareFunc_arrow: SquareFunc = (num: number) => {
+  return num * num;
+};
+
+// 클래스에서의 인터페이스
+interface ITodo {
+  id: number;
+  content: string;
+  completed: boolean;
+}
+
+class Todo implements ITodo {
+  constructor(
+    public id: number,
+    public content: string,
+    public completed: boolean
+  ) {}
+}
+
+const todo = new Todo(1, "TS", false);
+console.log(todo);
+
+// 인터페이스 추상메소드 구현
+interface IStudent {
+  name: string;
+  sayHello(): void;
+}
+
+class NewStudent implements IStudent {
+  constructor(public name: string) {}
+
+  sayHello(): void {
+    console.log(`Hello ${this.name}`);
+  }
+}
+
+const me = new NewStudent("Jeon");
+me.sayHello();
